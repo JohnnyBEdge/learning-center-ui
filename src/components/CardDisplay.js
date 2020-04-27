@@ -29,7 +29,7 @@ class CardDisplay extends React.Component{
         })
         return(
             <div id="card_display">
-                <AddCardForm />
+                <AddCardForm getVocab={this.getVocab}/>
                 <Card />
                 <ul>
                     {displayVocab}

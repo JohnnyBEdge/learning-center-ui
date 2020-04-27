@@ -8,35 +8,39 @@ class AddCardForm extends React.Component{
             term: '',
             answer: ''
         }
-    // handleChange = ({target}) => {
-    //     const key = target.name;
-    //     this.setState({[key]:target.value})
-    // };
-
-    // handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     fetch(`http://localhost:5001/api/gear`,{
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify([this.state])
-    //     }).then(() => this.setState({
-    //             term: '',
-    //             answer: ''
-    //     })).then(this.props.getVocab)
-    // };
-
     };
+
+    handleChange = ({target}) => {
+        const key = target.name;
+        this.setState({[key]:target.value})
+    };
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+// NEED TO ADD VALIDATION
+console.log(this.state)
+        fetch(`http://localhost:5001/api/vocab`,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(this.state)
+        }).then(() => this.setState({
+                term: '',
+                answer: ''
+        })).then(this.props.getVocab)
+    };
+
+
 
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
                 <input type="text" 
-                    name="question"
+                    name="term"
                     onChange={this.handleChange} 
                     placeholder="Question or Term"
-                    value={this.state.question} />
+                    value={this.state.term} />
                 <input type="text" 
                     name="answer"
                     onChange={this.handleChange}

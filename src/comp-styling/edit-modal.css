@@ -1,0 +1,35 @@
+.ReactModal__Overlay.ReactModal__Overlay--after-open{
+    background-color: rgba(0, 0, 0, 0.75) !important;
+} 
+.ReactModal__Content.ReactModal__Content--after-open {
+    width: 500px;
+    height: 650px;
+    margin: 0 auto;
+
+}
+
+#edit_form {
+    height: 635px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+#edit_form input{
+    width:90%;
+    text-align: center;
+}
+
+#edit_form button {
+    width: 90%;
+    height: 30px;
+}
+
+#answer_input{
+    width:90%;
+    height: 40%;
+}
+
+#term_input {
+    height: 30px;
+}

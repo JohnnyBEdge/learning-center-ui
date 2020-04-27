@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import '../comp-styling/edit-modal.css'
 
 Modal.setAppElement('#root');
 
@@ -32,13 +33,16 @@ class EditVocabForm extends React.Component{
     render(){
         return(
             <Modal isOpen={this.props.modalIsOpen} onRequestClose={this.props.closeModal}>
-                <form onSubmit={this.handleSubmit}>
+                <form id="edit_form" onSubmit={this.handleSubmit}>
+                    <h3>Edit</h3>
                     <input type="text"
+                            id="term_input"
                             name="term"
                             placeholder="Term or question"
                             value={this.state.term}
                             onChange={this.handleChange} />
                     <input type="text"
+                            id="answer_input"
                             name="answer"
                             placeholder="Answer"
                             value={this.state.answer}

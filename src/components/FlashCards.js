@@ -2,14 +2,20 @@ import React from 'react'
 import Card from './Card'
 import AddCardForm from './AddCardForm';
 import Nav from './Nav';
+import ReactToolTip from 'react-tooltip';
+import Modal from 'react-modal'
+import EditVocabForm from './EditVocabForm';
  
 class FlashCards extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            cards: []
+            cards: [],
+            modalIsOpen: false,
+            editVocab: {}
         }
+        this.getVocab = this.getVocab.bind(this);
     };
 
     getVocab = () => {
@@ -26,7 +32,18 @@ class FlashCards extends React.Component{
             }).then(response => response.json())
             .then(this.getVocab);
         };
-        }
+    };
+
+    editVocab = (card) => {
+        this.setState({
+            editVocab:card,
+            modalIsOpen: true
+        })
+    };
+
+    closeModal = () => {
+        this.setState({modalIsOpen:false})
+    };
 
 
     componentDidMount(){
@@ -37,8 +54,17 @@ class FlashCards extends React.Component{
 
     render(){
         const displayVocab = this.state.cards.map((card) => {
-            return <li>{card.term}<button onClick={() => this.deleteVocab(card._id)}>X</button></li>
+            return <li>{card.term}
+                    <button onClick={() => this.deleteVocab(card._id)}>&#128465;</button>
+                    <button onClick={() => this.editVocab(card)}>&#9998;</button>
+                    </li>
         })
+
+        const displayEditForm = <EditVocabForm key={this.state.editVocab._id} 
+                                               modalIsOpen={this.state.modalIsOpen}
+                                               closeModal={this.closeModal}
+                                               card={this.state.editVocab}
+                                               getVocab={this.getVocab} />
 
         return(
             <div id="card_display">
@@ -47,6 +73,7 @@ class FlashCards extends React.Component{
                 <Card />
                 <ul>
                     {displayVocab}
+                    {displayEditForm}
                 </ul>
             </div>
         )

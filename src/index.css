@@ -22,25 +22,3 @@ body {
     margin: 10px;
   }
 
-  #card_display {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-  }
-
-  .card {
-    width: 500px;
-    height: 300px;
-    border: solid 1px black;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .term {
-      align-self: center;
-      font-size: 30px;
-  }
- 

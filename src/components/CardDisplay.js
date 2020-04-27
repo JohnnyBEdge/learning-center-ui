@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from './Card'
+import AddCardForm from './AddCardForm';
  
 class CardDisplay extends React.Component{
     constructor(props){
@@ -9,6 +10,7 @@ class CardDisplay extends React.Component{
     render(){
         return(
             <div id="card_display">
+                <AddCardForm />
                 <Card />
             </div>
         )

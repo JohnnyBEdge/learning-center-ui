@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import CardDisplay from './components/CardDisplay'
+import FlashCards from './components/FlashCards'
 // import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CardDisplay />
+    <FlashCards />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,8 +1,9 @@
 import React from 'react'
 import Card from './Card'
 import AddCardForm from './AddCardForm';
+import Nav from './Nav';
  
-class CardDisplay extends React.Component{
+class FlashCards extends React.Component{
     constructor(props){
         super(props);
 
@@ -17,6 +18,17 @@ class CardDisplay extends React.Component{
             .then(data => this.setState({cards: data}, () => console.log(this.state.cards)))
     };
 
+
+    deleteVocab = (id) => {
+        if(window.confirm("Are you sure you want to delete?")){
+            fetch(`http://localhost:5001/api/vocab/${id}`,{
+                method: "DELETE"
+            }).then(response => response.json())
+            .then(this.getVocab);
+        };
+        }
+
+
     componentDidMount(){
         this.getVocab();
     };
@@ -25,10 +37,12 @@ class CardDisplay extends React.Component{
 
     render(){
         const displayVocab = this.state.cards.map((card) => {
-            return <li>{card.term}</li>
+            return <li>{card.term}<button onClick={() => this.deleteVocab(card._id)}>X</button></li>
         })
+
         return(
             <div id="card_display">
+                <Nav />
                 <AddCardForm getVocab={this.getVocab}/>
                 <Card />
                 <ul>
@@ -39,4 +53,4 @@ class CardDisplay extends React.Component{
     };
 };
 
-export default CardDisplay;
+export default FlashCards;

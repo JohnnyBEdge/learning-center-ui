@@ -72,7 +72,15 @@ class FlashCards extends React.Component{
             <div id="card_display">
                 <Nav />
                 <AddCardForm getVocab={this.getVocab}/>
+                <p id="card_set">Card Set: All</p>
                 <Card />
+                <div id="card_controls">
+                    <p>Previous Card</p>
+                    <p>Click Card to Flip</p>
+                    <p>Next Card</p>
+                </div>
+                
+
                 <ul>
                     {displayVocab}
                     {displayEditForm}

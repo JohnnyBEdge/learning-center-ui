@@ -22,3 +22,17 @@ body {
     margin: 10px;
   }
 
+#card_set {
+  display: flex;
+  width: 100px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+#card_controls {
+  display: flex;
+  width: 700px;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  font-size: 12px;
+}

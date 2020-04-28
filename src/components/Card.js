@@ -1,22 +1,37 @@
 import React from 'react'
 import '../comp-styling/card.css'
+
  
-const Card = ({card}) => {
+class Card extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            card: "card"
+        }
 
-    return (
-        <div className="card">
-            <div className="card-inner">
-                <div className="card-front">
-                    <p>Test Front</p>
-                </div>
+    }
+    flipCard = () => {
+        if(this.state.card === "card"){
+            this.setState({card: "card is-flipped"})
+        } else {
+            this.setState({card: "card"})
+        }
+    }
 
-                <div className="card-back">
-                    <p>Test Back</p>
+
+    render(){
+        return(
+            <div className="scene scene--card" onClick={this.flipCard}>
+                <div className={this.state.card}>
+                    <div className="card__face card__face--front">front</div>
+                    <div className="card__face card__face--back">back</div>
                 </div>
-            
             </div>
-        </div>
-    );
-}
+
+             
+        );
+    };
+};
+
 
 export default Card;

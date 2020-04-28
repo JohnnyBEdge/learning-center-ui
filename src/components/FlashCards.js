@@ -41,6 +41,8 @@ class FlashCards extends React.Component{
         })
     };
 
+
+
     closeModal = () => {
         this.setState({modalIsOpen:false})
     };

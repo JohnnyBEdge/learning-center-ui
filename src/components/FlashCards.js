@@ -3,6 +3,7 @@ import Card from './Card'
 import AddCardForm from './AddCardForm';
 import Nav from './Nav';
 import EditVocabForm from './EditVocabForm';
+import SetContainer from './SetContainer'
  
 class FlashCards extends React.Component{
     constructor(props){
@@ -33,6 +34,18 @@ class FlashCards extends React.Component{
         };
     };
 
+    
+
+    navigateFlashCards = (e) => {
+        if (e.keyCode == "37") {
+            this.previousCard();
+        } else if(e.keyCode == "39"){
+            this.nextCard();
+        } else if(e.keyCode == "38" || e.keyCode == "40"){
+            this.flipCard();
+        }
+    }
+
     editVocab = (card) => {
         this.setState({
             editVocab:card,
@@ -49,8 +62,8 @@ class FlashCards extends React.Component{
         } else {
             card ++; 
             this.setState({currentCard: card});
-        }
-    }
+        };
+    };
     previousCard = () => {
         let card = this.state.currentCard;
         let previous;
@@ -61,11 +74,8 @@ class FlashCards extends React.Component{
         } else {
             previous = card -1;
             this.setState({currentCard: previous});
-        }
-    }
-
-
-    
+        };
+    };
 
 
     closeModal = () => {
@@ -74,6 +84,7 @@ class FlashCards extends React.Component{
 
     componentDidMount(){
         this.getVocab();
+        document.addEventListener("keydown", this.navigateFlashCards);
     };
 
     render(){
@@ -95,26 +106,30 @@ class FlashCards extends React.Component{
 
 
         return(
-            <div id="card_display">
+            <>
                 <Nav />
                 <p id="card_set">Card Set: All</p>
-                {currentCard ? <Card currentCard={currentCard}/>:""}
+                {currentCard ? <Card currentCard={currentCard} flipCard={this.flipCard}/>:""}
                 <div id="card_controls">
                     <p onClick={this.previousCard}>Previous Card</p>
                     <p>Click Card to Flip</p>
                     <p onClick={this.nextCard}>Next Card</p>
                 </div>
-                
-                <div className="word_bank">
+                <SetContainer />
+                <fieldset id="word_bank">
+                    <legend>Word Bank</legend>
                     <AddCardForm getVocab={this.getVocab}/>
-                    <ul>
-                        {displayVocabBank}
-                        {displayEditForm}
-                    </ul>
-                </div>
+                    <fieldset>
+                        <h3>Set: </h3>
+                        <ul>
+                            {displayVocabBank}
+                            {displayEditForm}
+                        </ul>
+                    </fieldset>
+                </fieldset>
 
 
-            </div>
+            </>
         )
     };
 };

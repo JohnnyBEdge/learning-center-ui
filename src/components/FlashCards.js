@@ -2,8 +2,6 @@ import React from 'react'
 import Card from './Card'
 import AddCardForm from './AddCardForm';
 import Nav from './Nav';
-import ReactToolTip from 'react-tooltip';
-import Modal from 'react-modal'
 import EditVocabForm from './EditVocabForm';
  
 class FlashCards extends React.Component{
@@ -13,7 +11,8 @@ class FlashCards extends React.Component{
         this.state = {
             cards: [],
             modalIsOpen: false,
-            editVocab: {}
+            editVocab: {},
+            currentCard: 0
         }
         this.getVocab = this.getVocab.bind(this);
     };
@@ -41,22 +40,17 @@ class FlashCards extends React.Component{
         })
     };
 
-
-
     closeModal = () => {
         this.setState({modalIsOpen:false})
     };
-
 
     componentDidMount(){
         this.getVocab();
     };
 
-    
-
     render(){
-        const displayVocab = this.state.cards.map((card) => {
-            return <li>{card.term}
+        const displayVocabBank = this.state.cards.map((card) => {
+            return <li key={card._id}>{card.term}
                     <button onClick={() => this.deleteVocab(card._id)}>&#128465;</button>
                     <button onClick={() => this.editVocab(card)}>&#9998;</button>
                     </li>
@@ -68,23 +62,30 @@ class FlashCards extends React.Component{
                                                card={this.state.editVocab}
                                                getVocab={this.getVocab} />
 
+
+        const currentCard = this.state.cards[this.state.currentCard];
+
+
         return(
             <div id="card_display">
                 <Nav />
-                <AddCardForm getVocab={this.getVocab}/>
                 <p id="card_set">Card Set: All</p>
-                <Card />
+                {currentCard ? <Card currentCard={currentCard}/>:""}
                 <div id="card_controls">
                     <p>Previous Card</p>
                     <p>Click Card to Flip</p>
                     <p>Next Card</p>
                 </div>
                 
+                <div className="word_bank">
+                    <AddCardForm getVocab={this.getVocab}/>
+                    <ul>
+                        {displayVocabBank}
+                        {displayEditForm}
+                    </ul>
+                </div>
 
-                <ul>
-                    {displayVocab}
-                    {displayEditForm}
-                </ul>
+
             </div>
         )
     };

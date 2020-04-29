@@ -6,7 +6,7 @@ class Card extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            card: "card"
+            card: "card",
         }
 
     }
@@ -23,8 +23,8 @@ class Card extends React.Component{
         return(
             <div className="scene scene--card" onClick={this.flipCard}>
                 <div className={this.state.card}>
-                    <div className="card__face card__face--front">front</div>
-                    <div className="card__face card__face--back">back</div>
+                    <div className="card__face card__face--front">{this.props.currentCard.term}</div>
+                    <div className="card__face card__face--back">{this.props.currentCard.answer}</div>
                 </div>
             </div>
 

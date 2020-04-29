@@ -18,7 +18,6 @@ class Card extends React.Component{
         }
     }
 
-
     render(){
         return(
             <div className="scene scene--card" onClick={this.flipCard}>

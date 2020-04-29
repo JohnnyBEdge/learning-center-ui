@@ -40,6 +40,34 @@ class FlashCards extends React.Component{
         })
     };
 
+    nextCard = () => {
+        let card = this.state.currentCard;
+
+        if(card == this.state.cards.length -1){
+            card = 0;
+            this.setState({currentCard: card});
+        } else {
+            card ++; 
+            this.setState({currentCard: card});
+        }
+    }
+    previousCard = () => {
+        let card = this.state.currentCard;
+        let previous;
+        if(card == 0){
+            previous = this.state.cards.length-1;
+            card = previous;
+            this.setState({currentCard: card});
+        } else {
+            previous = card -1;
+            this.setState({currentCard: previous});
+        }
+    }
+
+
+    
+
+
     closeModal = () => {
         this.setState({modalIsOpen:false})
     };
@@ -72,9 +100,9 @@ class FlashCards extends React.Component{
                 <p id="card_set">Card Set: All</p>
                 {currentCard ? <Card currentCard={currentCard}/>:""}
                 <div id="card_controls">
-                    <p>Previous Card</p>
+                    <p onClick={this.previousCard}>Previous Card</p>
                     <p>Click Card to Flip</p>
-                    <p>Next Card</p>
+                    <p onClick={this.nextCard}>Next Card</p>
                 </div>
                 
                 <div className="word_bank">

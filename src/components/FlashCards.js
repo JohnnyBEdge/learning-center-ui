@@ -115,14 +115,14 @@ class FlashCards extends React.Component{
                     <p>Click Card to Flip</p>
                     <p onClick={this.nextCard}>Next Card</p>
                 </div>
-                <SetContainer />
+                <SetContainer/>
                 <fieldset id="word_bank">
                     <legend>Word Bank</legend>
                     <AddCardForm getVocab={this.getVocab}/>
                     <fieldset>
                         <h3>Set: </h3>
                         <ul>
-                            {displayVocabBank}
+                            {/* {displayVocabBank} */}
                             {displayEditForm}
                         </ul>
                     </fieldset>

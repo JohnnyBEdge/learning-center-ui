@@ -3,7 +3,8 @@ import Card from './Card'
 import AddCardForm from './AddCardForm';
 import Nav from './Nav';
 import EditVocabForm from './EditVocabForm';
-import SetContainer from './SetContainer'
+import SetContainer from './SetContainer';
+import {CardSetContext} from '../context/card-sets';
  
 class FlashCards extends React.Component{
     constructor(props){
@@ -33,15 +34,26 @@ class FlashCards extends React.Component{
             .then(this.getVocab);
         };
     };
+    // AddCardForm = () => {
+    //     // NEED TO ADD VALIDATION
+    //             console.log(this.state)
+    //             fetch(`http://localhost:5001/api/vocab`,{
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type": "application/json"
+    //                 },
+    //                 body: JSON.stringify(term,answer)
+    //             }).then(this.props.getVocab)
+    //         };
 
     
 
     navigateFlashCards = (e) => {
-        if (e.keyCode == "37") {
+        if (e.keyCode === 37) {
             this.previousCard();
-        } else if(e.keyCode == "39"){
+        } else if(e.keyCode === 39){
             this.nextCard();
-        } else if(e.keyCode == "38" || e.keyCode == "40"){
+        } else if(e.keyCode === 38 || e.keyCode === 40){
             this.flipCard();
         }
     }
@@ -56,7 +68,7 @@ class FlashCards extends React.Component{
     nextCard = () => {
         let card = this.state.currentCard;
 
-        if(card == this.state.cards.length -1){
+        if(card === this.state.cards.length -1){
             card = 0;
             this.setState({currentCard: card});
         } else {
@@ -67,7 +79,7 @@ class FlashCards extends React.Component{
     previousCard = () => {
         let card = this.state.currentCard;
         let previous;
-        if(card == 0){
+        if(card === 0){
             previous = this.state.cards.length-1;
             card = previous;
             this.setState({currentCard: card});
@@ -88,12 +100,12 @@ class FlashCards extends React.Component{
     };
 
     render(){
-        const displayVocabBank = this.state.cards.map((card) => {
-            return <li key={card._id}>{card.term}
-                    <button onClick={() => this.deleteVocab(card._id)}>&#128465;</button>
-                    <button onClick={() => this.editVocab(card)}>&#9998;</button>
-                    </li>
-        })
+        // const displayVocabBank = this.state.cards.map((card) => {
+        //     return <li key={card._id}>{card.term}
+        //             <button onClick={() => this.deleteVocab(card._id)}>&#128465;</button>
+        //             <button onClick={() => this.editVocab(card)}>&#9998;</button>
+        //             </li>
+        // })
 
         const displayEditForm = <EditVocabForm key={this.state.editVocab._id} 
                                                modalIsOpen={this.state.modalIsOpen}
@@ -106,30 +118,28 @@ class FlashCards extends React.Component{
 
 
         return(
-            <>
-                <Nav />
-                <p id="card_set">Card Set: All</p>
-                {currentCard ? <Card currentCard={currentCard} flipCard={this.flipCard}/>:""}
-                <div id="card_controls">
-                    <p onClick={this.previousCard}>Previous Card</p>
-                    <p>Click Card to Flip</p>
-                    <p onClick={this.nextCard}>Next Card</p>
-                </div>
-                <SetContainer/>
-                <fieldset id="word_bank">
-                    <legend>Word Bank</legend>
-                    <AddCardForm getVocab={this.getVocab}/>
-                    <fieldset>
-                        <h3>Set: </h3>
-                        <ul>
-                            {/* {displayVocabBank} */}
-                            {displayEditForm}
-                        </ul>
+            <CardSetContext.Provider value ={this.state}>
+                    <Nav />
+                    <p id="card_set">Card Set: All</p>
+                    {currentCard ? <Card currentCard={currentCard} flipCard={this.flipCard}/>:""}
+                    <div id="card_controls">
+                        <p onClick={this.previousCard}>Previous Card</p>
+                        <p>Click Card to Flip</p>
+                        <p onClick={this.nextCard}>Next Card</p>
+                    </div>
+                    {/* <SetContainer cards={this.state.cards} /> */}
+                    <fieldset id="word_bank">
+                        <legend>Word Bank</legend>
+                        <AddCardForm getVocab={this.getVocab}/>
+                        <fieldset>
+                            <h3>Set: </h3>
+                            <ul>
+                                {/* {displayVocabBank} */}
+                                {displayEditForm}
+                            </ul>
+                        </fieldset>
                     </fieldset>
-                </fieldset>
-
-
-            </>
+            </CardSetContext.Provider>
         )
     };
 };

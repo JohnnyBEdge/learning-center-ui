@@ -5,6 +5,8 @@ import Nav from './Nav';
 import EditVocabForm from './EditVocabForm';
 import SetContainer from './SetContainer';
 import {CardSetContext} from '../context/card-sets';
+import { Button } from 'reactstrap';
+import '../comp-styling/flash-cards.css'
  
 class FlashCards extends React.Component{
     constructor(props){
@@ -117,9 +119,9 @@ class FlashCards extends React.Component{
                                         flipCard={this.flipCard} />:""}
                
                     <div id="card_controls">
-                        <p onClick={this.previousCard}>Previous Card</p>
+                        <Button outline color="primary" onClick={this.previousCard}>&#60;&#60; Previous</Button>
                         <p>Click Card to Flip</p>
-                        <p onClick={this.nextCard}>Next Card</p>
+                        <Button outline color="primary" onClick={this.nextCard}>Next &#62;&#62;</Button>
                     </div>
                     <AddCardForm getVocab={this.getVocab}/>
                     <SetContainer />

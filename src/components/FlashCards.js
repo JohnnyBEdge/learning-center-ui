@@ -11,10 +11,12 @@ class FlashCards extends React.Component{
         super(props);
 
         this.state = {
-            cards: [],
+            allCards: [],
             modalIsOpen: false,
-            editVocab: {},
-            currentCard: 0
+            currentCard: 0,
+            editVocab: this.editVocab,
+            deleteVocab: this.deleteVocab,
+            card: "card"
         }
         this.getVocab = this.getVocab.bind(this);
     };
@@ -22,7 +24,7 @@ class FlashCards extends React.Component{
     getVocab = () => {
         fetch(`http://localhost:5001/api/vocab`)
             .then(response => response.json())
-            .then(data => this.setState({cards: data}, () => console.log(this.state.cards)))
+            .then(data => this.setState({allCards: data}, () => console.log(this.state.allCards)))
     };
 
 
@@ -34,19 +36,6 @@ class FlashCards extends React.Component{
             .then(this.getVocab);
         };
     };
-    // AddCardForm = () => {
-    //     // NEED TO ADD VALIDATION
-    //             console.log(this.state)
-    //             fetch(`http://localhost:5001/api/vocab`,{
-    //                 method: "POST",
-    //                 headers: {
-    //                     "Content-Type": "application/json"
-    //                 },
-    //                 body: JSON.stringify(term,answer)
-    //             }).then(this.props.getVocab)
-    //         };
-
-    
 
     navigateFlashCards = (e) => {
         if (e.keyCode === 37) {
@@ -55,20 +44,20 @@ class FlashCards extends React.Component{
             this.nextCard();
         } else if(e.keyCode === 38 || e.keyCode === 40){
             this.flipCard();
-        }
-    }
+        };
+    };
 
     editVocab = (card) => {
         this.setState({
             editVocab:card,
             modalIsOpen: true
-        })
+        });
     };
 
     nextCard = () => {
         let card = this.state.currentCard;
 
-        if(card === this.state.cards.length -1){
+        if(card === this.state.allCards.length -1){
             card = 0;
             this.setState({currentCard: card});
         } else {
@@ -80,12 +69,19 @@ class FlashCards extends React.Component{
         let card = this.state.currentCard;
         let previous;
         if(card === 0){
-            previous = this.state.cards.length-1;
+            previous = this.state.allCards.length-1;
             card = previous;
             this.setState({currentCard: card});
         } else {
             previous = card -1;
             this.setState({currentCard: previous});
+        };
+    };
+    flipCard = () => {
+        if(this.state.card === "card"){
+            this.setState({card: "card is-flipped"})
+        } else {
+            this.setState({card: "card"})
         };
     };
 
@@ -100,13 +96,6 @@ class FlashCards extends React.Component{
     };
 
     render(){
-        // const displayVocabBank = this.state.cards.map((card) => {
-        //     return <li key={card._id}>{card.term}
-        //             <button onClick={() => this.deleteVocab(card._id)}>&#128465;</button>
-        //             <button onClick={() => this.editVocab(card)}>&#9998;</button>
-        //             </li>
-        // })
-
         const displayEditForm = <EditVocabForm key={this.state.editVocab._id} 
                                                modalIsOpen={this.state.modalIsOpen}
                                                closeModal={this.closeModal}
@@ -114,32 +103,32 @@ class FlashCards extends React.Component{
                                                getVocab={this.getVocab} />
 
 
-        const currentCard = this.state.cards[this.state.currentCard];
+        const currentCard = this.state.allCards[this.state.currentCard];
 
 
         return(
-            <CardSetContext.Provider value ={this.state}>
-                    <Nav />
+            <>
+                <Nav />
+                <CardSetContext.Provider value ={this.state}>
                     <p id="card_set">Card Set: All</p>
-                    {currentCard ? <Card currentCard={currentCard} flipCard={this.flipCard}/>:""}
+                    
+                    {currentCard ? <Card currentCard={currentCard} 
+                                        card={this.state.card} 
+                                        flipCard={this.flipCard} />:""}
+               
                     <div id="card_controls">
                         <p onClick={this.previousCard}>Previous Card</p>
                         <p>Click Card to Flip</p>
                         <p onClick={this.nextCard}>Next Card</p>
                     </div>
-                    {/* <SetContainer cards={this.state.cards} /> */}
-                    <fieldset id="word_bank">
-                        <legend>Word Bank</legend>
-                        <AddCardForm getVocab={this.getVocab}/>
-                        <fieldset>
-                            <h3>Set: </h3>
+                    <AddCardForm getVocab={this.getVocab}/>
+                    <SetContainer />
+                        
                             <ul>
-                                {/* {displayVocabBank} */}
                                 {displayEditForm}
                             </ul>
-                        </fieldset>
-                    </fieldset>
-            </CardSetContext.Provider>
+                </CardSetContext.Provider>
+            </>
         )
     };
 };

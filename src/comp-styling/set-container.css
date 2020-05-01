@@ -2,6 +2,21 @@
     margin: 20px;
 }
 
+#all_cards_list {
+    padding-top: 15px;
+    margin-top: 0;
+    height: auto;
+}
+
+#all_cards_list li{
+    margin: 10px;
+    display: inline-block;
+    font-size: 30px;
+    padding: 3px;
+    border: dashed 1px black;
+    border-radius: 5px;
+}
+
 #tab_nav {
     width: 100%;
 }

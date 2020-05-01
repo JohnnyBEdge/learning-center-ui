@@ -1,28 +1,25 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../comp-styling/set-container.css'
 import {CardSetContext} from '../context/card-sets';
 
-class SetContainer extends React.Component{
-    constructor(props){
-        super(props);
 
-        // this.state={
-        //     cards: props.cards
-        // }
-    }
+const SetContainer = () => {
+    // usecontxt and map allcards to display
+    const {
+        allCards,
+        editVocab,
+        deleteVocab
+        } = useContext(CardSetContext);
 
-    render(){
+    const listItem = allCards.map((card) => {
+        return <li key={card._id}> {card.term}
+                    <button onClick={() => deleteVocab(card._id)}>&#128465;</button>
+                    <button onClick={() => editVocab(card)}>&#9998;</button> 
+             </li>
+    });
 
-        const displayVocabBank = this.props.cards.map((card) => {
-            return <li key={card._id}>{card.term}
-                        {/* <button onClick={() => this.deleteVocab(card._id)}>&#128465;</button>
-                        <button onClick={() => this.editVocab(card)}>&#9998;</button> */}
-                    </li>
-        });
-        console.log("card",this.props.cards)
-
-        return(
-            <CardSetContext.Consumer>
+    return(
+        
                 <div id="set_container">
                     <div id="tab_nav">
                         <ul>
@@ -31,19 +28,15 @@ class SetContainer extends React.Component{
                             <li className="tab">+New Set</li>
                         </ul>
                     </div>
+
                     <div id="tab_content">
-                        {/* <p>test</p> */}
-
-                        <ul>
-                            {displayVocabBank} 
+                        <ul id="all_cards_list">
+                            {listItem}
                         </ul>
-                                            
+                        
                     </div>
-                </div>
-            </CardSetContext.Consumer>
-        );
-    };
-
-};
+                </div> 
+    )
+}
 
 export default SetContainer;

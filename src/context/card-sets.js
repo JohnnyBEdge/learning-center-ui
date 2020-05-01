@@ -3,6 +3,10 @@ import React from 'react';
 export const CardSetContext = React.createContext({
     allCards: [],
     reviewCards: [],
-    getVocab: () => {}
+    getVocab: () => {},
+    editVocab: () => {},
+    deleteVocab: () => {},
+    flipCard: () => {},
+    card: ''
 });
 

@@ -1,0 +1,28 @@
+#add_form {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input, #add_card_btn {
+    height: 30px;
+    border-radius: 8px;
+    width: 300px;
+    align-self: center;
+    margin: 5px;
+    text-align: center;
+}
+
+textarea {
+    align-self: center;
+    border-radius: 8px;
+    width: 300px;
+    height: 75px;
+    text-align: center;
+    border-style: inset;
+}
+
+#add_card_btn {
+    background-color: #5CB85D;
+}

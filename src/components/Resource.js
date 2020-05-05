@@ -2,11 +2,11 @@ import React from 'react';
 
 const Resource = (props) => {
     return(
-        <div className="resource">
-            <p className="resource-title">{props.title}</p>
-            <p className="resource-author">{props.author}</p>
-            <p className="resource-date-added">{props.data}</p>
-        </div>
+        <tr className="resource">
+            <th className="resource-title">{props.title}</th>
+            <th className="resource-author">{props.author}</th>
+            <th className="resource-date-added">{props.date}</th>
+        </tr>
     )
 };
 

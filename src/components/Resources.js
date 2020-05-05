@@ -1,5 +1,6 @@
 import React from 'react';
 import Resource from './Resource';
+import { Table } from 'reactstrap';
 
 class Resources extends React.Component{
     constructor(props){
@@ -24,9 +25,18 @@ class Resources extends React.Component{
         })
 
         return(
-            <>
-                {displayResource}
-            </>
+                <Table hover>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>Author</th>
+                            <th>Date Added</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {displayResource}
+                    </tbody>
+                </Table>
         )
     };
 };

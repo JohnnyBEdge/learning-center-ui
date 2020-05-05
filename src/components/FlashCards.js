@@ -6,7 +6,8 @@ import EditVocabForm from './EditVocabForm';
 import SetContainer from './SetContainer';
 import {CardSetContext} from '../context/card-sets';
 import { Button } from 'reactstrap';
-import '../comp-styling/flash-cards.css'
+import '../comp-styling/flash-cards.css';
+import Resources from './Resources'
  
 class FlashCards extends React.Component{
     constructor(props){
@@ -130,6 +131,7 @@ class FlashCards extends React.Component{
                                 {displayEditForm}
                             </ul>
                 </CardSetContext.Provider>
+                <Resources />
             </>
         )
     };

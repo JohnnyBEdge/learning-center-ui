@@ -1,13 +1,13 @@
 import React from 'react'
 import Card from './Card'
 import AddCardForm from './AddCardForm';
-import Nav from './Nav';
+// import Nav from './Nav';
 import EditVocabForm from './EditVocabForm';
 import SetContainer from './SetContainer';
 import {CardSetContext} from '../context/card-sets';
 import { Button } from 'reactstrap';
 import '../comp-styling/flash-cards.css';
-import Resources from './Resources'
+// import Resources from './Resources'
  
 class FlashCards extends React.Component{
     constructor(props){
@@ -111,7 +111,7 @@ class FlashCards extends React.Component{
 
         return(
             <>
-                <Nav />
+                {/* <Nav /> */}
                 <CardSetContext.Provider value ={this.state}>
                     <p id="card_set">Card Set: All</p>
                     
@@ -131,7 +131,7 @@ class FlashCards extends React.Component{
                                 {displayEditForm}
                             </ul>
                 </CardSetContext.Provider>
-                <Resources />
+                {/* <Resources /> */}
             </>
         )
     };

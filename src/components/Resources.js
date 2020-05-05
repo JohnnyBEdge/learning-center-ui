@@ -1,4 +1,5 @@
 import React from 'react';
+import Resource from './Resource';
 
 class Resources extends React.Component{
     constructor(props){
@@ -17,9 +18,14 @@ class Resources extends React.Component{
     }
 
     render(){
-        console.log("RESOURCES",this.state.resources)
+        console.log("RESOURCES",this.state.resources);
+        const displayResource = this.state.resources.map((resource) => {
+            return <Resource key={resource._id} title={resource.title} author={resource.author} date={resource.date_added} />
+        })
+
         return(
             <>
+                {displayResource}
             </>
         )
     };

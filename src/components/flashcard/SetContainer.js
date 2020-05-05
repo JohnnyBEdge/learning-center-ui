@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import '../comp-styling/set-container.css'
-import {CardSetContext} from '../context/card-sets';
+import '../../comp-styling/set-container.css'
+import {CardSetContext} from '../../context/card-sets';
 
 
 const SetContainer = () => {

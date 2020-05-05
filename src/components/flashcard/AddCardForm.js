@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../comp-styling/add-card-form.css'
+import '../../comp-styling/add-card-form.css'
 
 const AddCardForm = (props) => {
     const [term, setTerm] = useState('');

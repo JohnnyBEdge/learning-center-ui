@@ -1,13 +1,12 @@
 import React from 'react'
 import Card from './Card'
 import AddCardForm from './AddCardForm';
-// import Nav from './Nav';
 import EditVocabForm from './EditVocabForm';
 import SetContainer from './SetContainer';
-import {CardSetContext} from '../context/card-sets';
+import {CardSetContext} from '../../context/card-sets';
 import { Button } from 'reactstrap';
-import '../comp-styling/flash-cards.css';
-// import Resources from './Resources'
+import '../../comp-styling/flash-cards.css';
+
  
 class FlashCards extends React.Component{
     constructor(props){

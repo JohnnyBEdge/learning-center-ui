@@ -1,9 +1,9 @@
 import React from 'react'
 import Nav from './Nav';
 import Home from './Home';
-import Resources from './Resources'
-import FlashCards from './FlashCards';
-import OrigContent from './OrigContent';
+import Resources from './resource/Resources'
+import FlashCards from './flashcard/FlashCards';
+import OrigContent from './original/OrigContent';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Display = () => {

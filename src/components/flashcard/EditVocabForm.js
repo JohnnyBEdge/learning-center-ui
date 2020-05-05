@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import '../comp-styling/edit-modal.css'
+import '../../comp-styling/edit-modal.css'
 
 Modal.setAppElement('#root');
 

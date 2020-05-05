@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import FlashCards from './components/FlashCards'
 import Display from './components/Display'
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>

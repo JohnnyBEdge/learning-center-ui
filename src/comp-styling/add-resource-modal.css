@@ -1,0 +1,19 @@
+.modal-dialog {
+    border: solid 1px black;
+    border-radius: 5px;
+    margin-top: 200px;
+}
+.modal-title {
+    margin: 0 auto;
+}
+
+.add-article {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+#add_art_btn {
+    width: 65%;
+    margin: 0 auto;
+}

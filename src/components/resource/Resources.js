@@ -25,6 +25,9 @@ class Resources extends React.Component{
             .then(this.getResources);
         }
     };
+    closeModal = () => {
+        this.setState({modalIsOpen: false})
+    };
     componentDidMount(){
         this.getResources();
     }
@@ -35,7 +38,6 @@ class Resources extends React.Component{
         return(
             <>
             <ResourceContext.Provider value={this.state}>
-                <Button color="info">+Add Article</Button>
                 <AddResource getResources={this.getResources} />
                 <Table hover>
                     <thead>

@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Button} from 'reactstrap';
+import {ResourceContext} from '../../context/resources'
 
-const Resource = (props) => {
+const Resource = () => {
+    const {
+        resources,
+        deleteResource
+        } = useContext(ResourceContext);
+
+    const displayResource = resources.map((resource) => {
+        console.log("context", resources)
+
+        return  <tr className="resource" key={resource._id}>
+                    <th className="resource-title">{resource.art_name}</th>
+                    <th className="resource-author">{resource.author}</th>
+                    <th className="resource-date-added">{resource.date_added}</th>
+                    <th><Button color="warning">Edit</Button></th>
+                    <th><Button color="danger" onClick={()=>deleteResource(resource._id)}>Delete</Button></th>
+                </tr>
+    })
+
     return(
-        <tr className="resource">
-            <th className="resource-title">{props.title}</th>
-            <th className="resource-author">{props.author}</th>
-            <th className="resource-date-added">{props.date}</th>
-        </tr>
+        <>
+            {displayResource}
+        </>
     )
 };
 

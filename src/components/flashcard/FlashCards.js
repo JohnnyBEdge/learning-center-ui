@@ -110,7 +110,6 @@ class FlashCards extends React.Component{
 
         return(
             <>
-                {/* <Nav /> */}
                 <CardSetContext.Provider value ={this.state}>
                     <p id="card_set">Card Set: All</p>
                     

@@ -1,0 +1,14 @@
+#resource_display {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    align-self: center;
+}
+
+#resource_table{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+}

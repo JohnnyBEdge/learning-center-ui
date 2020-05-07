@@ -1,8 +1,9 @@
 import React from 'react';
 import Resource from './Resource';
-import { Table, Button } from 'reactstrap';
+import { Table } from 'reactstrap';
 import AddResource from './AddResource';
 import { ResourceContext } from '../../context/resources';
+import '../../comp-styling/resource-table.css';
 
 class Resources extends React.Component{
     constructor(props){
@@ -36,23 +37,28 @@ class Resources extends React.Component{
         console.log("RESOURCES",this.state.resources);
 
         return(
-            <>
-            <ResourceContext.Provider value={this.state}>
-                <AddResource getResources={this.getResources} />
-                <Table hover>
-                    <thead>
-                        <tr>
-                            <th>Article</th>
-                            <th>Author</th>
-                            <th>Date Added</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <Resource />
-                    </tbody>
-                </Table>
-            </ResourceContext.Provider>
-            </>
+            <div id="resource_display">
+                <ResourceContext.Provider value={this.state}>
+                    <h1>Resources</h1>
+
+                    <AddResource getResources={this.getResources} />
+
+                    <Table hover id="resource_table">
+                        <thead>
+                            <tr>
+                                <th>Article</th>
+                                <th>Author</th>
+                                <th>Date Added</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <Resource getResources={this.getResources}/>
+                        </tbody>
+                    </Table>
+                </ResourceContext.Provider>
+            </div>
         )
     };
 };

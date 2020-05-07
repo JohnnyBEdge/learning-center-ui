@@ -1,8 +1,9 @@
 import React, {useContext} from 'react';
 import {Button} from 'reactstrap';
 import {ResourceContext} from '../../context/resources'
+import EditResource from './EditResource';
 
-const Resource = () => {
+const Resource = (props) => {
     const {
         resources,
         deleteResource
@@ -12,11 +13,11 @@ const Resource = () => {
         console.log("context", resources)
 
         return  <tr className="resource" key={resource._id}>
-                    <th className="resource-title">{resource.art_name}</th>
-                    <th className="resource-author">{resource.author}</th>
-                    <th className="resource-date-added">{resource.date_added}</th>
-                    <th><Button color="warning">Edit</Button></th>
-                    <th><Button color="danger" onClick={()=>deleteResource(resource._id)}>Delete</Button></th>
+                    <td className="resource-title">{resource.art_name}</td>
+                    <td className="resource-author">{resource.author}</td>
+                    <td className="resource-date-added">{resource.date_added}</td>
+                    <EditResource key={resource._id} resource={resource} getResources={props.getResources}/>
+                    <td><Button color="danger" onClick={()=>deleteResource(resource._id)}>Delete</Button></td>
                 </tr>
     })
 

@@ -5,6 +5,7 @@ import AddResource from './AddResource';
 import { ResourceContext } from '../../context/resources';
 import '../../comp-styling/resource-table.css';
 
+
 class Resources extends React.Component{
     constructor(props){
         super(props);
@@ -34,7 +35,6 @@ class Resources extends React.Component{
     }
 
     render(){
-        console.log("RESOURCES",this.state.resources);
 
         return(
             <div id="resource_display">
@@ -48,6 +48,7 @@ class Resources extends React.Component{
                             <tr>
                                 <th>Article</th>
                                 <th>Author</th>
+                                <th>Type</th>
                                 <th>Date Added</th>
                                 <th></th>
                                 <th></th>

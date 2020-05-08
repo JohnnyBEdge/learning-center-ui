@@ -5,19 +5,19 @@ import '../../comp-styling/add-resource-modal.css';
 const EditResource = ({resource, getResources}) => {
 
 const [modal, setModal] = useState(false);
-const [art_name, setTitle] = useState(resource.art_name);
+const [title, setTitle] = useState(resource.title);
 const [author, setAuthor] = useState(resource.author);
+const [resource_type, setType] = useState(resource.resource_type);
 const [url, setUrl] = useState(resource.url);
 const [keywords, setKeywords] = useState(resource.keywords);
 
   const editResource = () => {
-      console.log("edited")
     fetch(`http://localhost:5001/api/resources/${resource._id}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({art_name, author, url, keywords})
+        body: JSON.stringify({title, author,resource_type, url, keywords})
     }).then(getResources)
     .then(toggle());
 };
@@ -31,15 +31,20 @@ const [keywords, setKeywords] = useState(resource.keywords);
             <ModalBody>
                 <div className="add-article">
                     <input type="text"
-                        id="art_name"
-                        name="art_name"
+                        id="title"
+                        name="title"
                         onChange={({target}) => setTitle(target.value)}
-                        value={art_name} />
+                        value={title} />
                     <input type="text"
                         id="url"
                         name="url"
                         onChange={({target}) => setUrl(target.value)}
                         value={url} />
+                    <input type="text"
+                        id="resource_type"
+                        name="resource_type"
+                        onChange={({target}) => setType(target.value)}
+                        value={resource_type} />
                     <input type="text"
                         id="author"
                         name="author"

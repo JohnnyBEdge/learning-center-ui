@@ -1,0 +1,32 @@
+
+
+#resource_display {
+    display: flex;
+    flex-direction: column;
+    background-image: 
+    linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)),
+     url(/resource-bkgd.jpeg);
+
+    background-size: cover;
+    height: 100vh;
+}
+
+h1 {
+    align-self: center;
+    color: white;
+    padding-top: 20px;
+}
+
+#resource_table{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+#add_resource_btn {
+    margin-left: 10%;
+}

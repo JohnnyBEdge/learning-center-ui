@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, FormFeedback } from 'reactstrap';
 import '../../comp-styling/add-resource-modal.css';
 
 const AddResource = (props) => {
@@ -27,7 +27,7 @@ const AddResource = (props) => {
   return (
     <div>
       
-        <Button color="success" onClick={toggle}>Add Article</Button>
+      <Button id="add_resource_btn" color="success" onClick={toggle}>+ Add Resource</Button>
 
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Add Resource</ModalHeader>
@@ -37,7 +37,7 @@ const AddResource = (props) => {
               <Input type="text"
                     id="title"
                     name="title"
-                    placeholder="Article Title"
+                    placeholder="Resource Title"
                     onChange={({target}) => setTitle(target.value)}
                     value={title} />
               <FormFeedback>You will not be able to see this</FormFeedback>
@@ -78,7 +78,9 @@ const AddResource = (props) => {
                     placeholder="Resource Type"
                     onChange={({target}) => setType(target.value)}
                     value={resource_type} >
+                    <option>-</option>
                     <option>Article</option>
+                    <option>Website</option>
                     <option>Podcast</option>
                     <option>Video</option>
               </Input>

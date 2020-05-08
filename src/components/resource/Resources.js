@@ -3,7 +3,7 @@ import Resource from './Resource';
 import { Table } from 'reactstrap';
 import AddResource from './AddResource';
 import { ResourceContext } from '../../context/resources';
-import '../../comp-styling/resource-table.css';
+import '../../comp-styling/resources.css';
 
 
 class Resources extends React.Component{
@@ -46,7 +46,7 @@ class Resources extends React.Component{
                     <Table hover id="resource_table">
                         <thead>
                             <tr>
-                                <th>Article</th>
+                                <th>Title</th>
                                 <th>Author</th>
                                 <th>Type</th>
                                 <th>Date Added</th>

@@ -46,3 +46,15 @@
   background: dodgerblue;
   transform: rotateY(180deg);
 }
+
+.review-btn {
+  font-size: 30px;
+  color: black;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  margin-left: 10px;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}

@@ -14,6 +14,7 @@ class FlashCards extends React.Component{
 
         this.state = {
             allCards: [],
+            reviewCards: [],
             modalIsOpen: false,
             currentCard: 0,
             editVocab: this.editVocab,
@@ -22,14 +23,12 @@ class FlashCards extends React.Component{
         }
         this.getVocab = this.getVocab.bind(this);
     };
-
+// HTTP methods
     getVocab = () => {
         fetch(`http://localhost:5001/api/vocab`)
             .then(response => response.json())
-            .then(data => this.setState({allCards: data}, () => console.log(this.state.allCards)))
+            .then(data => this.setState({allCards: data.all}, () => console.log(this.state.allCards)))
     };
-
-
     deleteVocab = (id) => {
         if(window.confirm("Are you sure you want to delete?")){
             fetch(`http://localhost:5001/api/vocab/${id}`,{
@@ -38,7 +37,14 @@ class FlashCards extends React.Component{
             .then(this.getVocab);
         };
     };
+    editVocab = (card) => {
+        this.setState({
+            editVocab:card,
+            modalIsOpen: true
+        });
+    };
 
+// Flashcard controls
     navigateFlashCards = (e) => {
         if (e.keyCode === 37) {
             this.previousCard();
@@ -48,14 +54,6 @@ class FlashCards extends React.Component{
             this.flipCard();
         };
     };
-
-    editVocab = (card) => {
-        this.setState({
-            editVocab:card,
-            modalIsOpen: true
-        });
-    };
-
     nextCard = () => {
         let card = this.state.currentCard;
 
@@ -87,7 +85,7 @@ class FlashCards extends React.Component{
         };
     };
 
-
+// Modal controls
     closeModal = () => {
         this.setState({modalIsOpen:false})
     };
@@ -97,7 +95,10 @@ class FlashCards extends React.Component{
         document.addEventListener("keydown", this.navigateFlashCards);
     };
 
+ 
     render(){
+        console.log(this.state.allCards)
+
         const displayEditForm = <EditVocabForm key={this.state.editVocab._id} 
                                                modalIsOpen={this.state.modalIsOpen}
                                                closeModal={this.closeModal}

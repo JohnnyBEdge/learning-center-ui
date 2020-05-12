@@ -31,18 +31,25 @@ const SetContainer = () => {
         <div>
             <Nav tabs>
                 <NavItem>
-                <NavLink
-                    className={classnames({ active: activeTab === '1' })}
-                    onClick={() => { toggle('1'); }}>
-                    All Cards
-                </NavLink>
+                    <NavLink
+                        className={classnames({ active: activeTab === '1' })}
+                        onClick={() => { toggle('1'); }}>
+                        All Cards
+                    </NavLink>
                 </NavItem>
                 <NavItem>
-                <NavLink
-                    className={classnames({ active: activeTab === '2' })}
-                    onClick={() => { toggle('2'); }}>
-                   Review
-                </NavLink>
+                    <NavLink
+                        className={classnames({ active: activeTab === '2' })}
+                        onClick={() => { toggle('2'); }}>
+                    Review
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink
+                        className={classnames({ active: activeTab === '2' })}
+                        onClick={() => { toggle('2'); }}>
+                    + Create
+                    </NavLink>
                 </NavItem>
             </Nav>
             <TabContent activeTab={activeTab}>

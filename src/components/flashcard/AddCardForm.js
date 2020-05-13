@@ -4,6 +4,7 @@ import '../../comp-styling/add-card-form.css'
 const AddCardForm = (props) => {
     const [term, setTerm] = useState('');
     const [answer, setAnswer] = useState('');
+    const [categories, setCategory] = useState(['all']);
 
         function addToSet(){
 // NEED TO ADD VALIDATION
@@ -12,18 +13,28 @@ const AddCardForm = (props) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({term,answer})
+            body: JSON.stringify({term,answer,categories})
         })
         .then(props.getVocab)
         .then(setTerm(''), setAnswer(''));
     };
 
+
+
     return(
         <div id="add_form"> 
+            <select id="category_selector" 
+                name="categories"
+                onChange={({target}) => setCategory([...categories, target.value])}
+                value={categories}>
+                <option>JS</option>
+                <option>CS</option>
+                <option>HTML</option>
+            </select>
             <input type="text" 
                 id="term"
                 name="term"
-                onChange={({target}) => setTerm(target.value)} 
+                onChange={({target}) => setTerm(target.value)}
                 placeholder="Question or Term"
                 value={term} />
 

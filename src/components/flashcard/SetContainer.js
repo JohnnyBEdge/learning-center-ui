@@ -27,6 +27,7 @@ const SetContainer = () => {
              </li>
     });
 
+    const testing = <h1>"Tehhlsinglds"</h1>
     return(
         <div>
             <Nav tabs>
@@ -45,9 +46,7 @@ const SetContainer = () => {
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink
-                        className={classnames({ active: activeTab === '2' })}
-                        onClick={() => { toggle('2'); }}>
+                    <NavLink id="create_set_btn" style={{backgroundColor:"#5CB85D"}}>
                     + Create
                     </NavLink>
                 </NavItem>
@@ -56,11 +55,13 @@ const SetContainer = () => {
                 <TabPane tabId="1">
                     <h4> All Cards</h4>
                     <ul id="all_cards_list">
+                    {testing}
                         {listItem}
                     </ul>
                 </TabPane>
                 <TabPane tabId="2">
                     <h4> Review Content</h4>
+                    
                 </TabPane>
             </TabContent>
     </div>

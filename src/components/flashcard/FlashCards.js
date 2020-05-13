@@ -15,6 +15,7 @@ class FlashCards extends React.Component{
         this.state = {
             allCards: [],
             reviewCards: [],
+            allCategories:[],
             modalIsOpen: false,
             currentCard: 0,
             editVocab: this.editVocab,
@@ -28,6 +29,7 @@ class FlashCards extends React.Component{
         fetch(`http://localhost:5001/api/vocab`)
             .then(response => response.json())
             .then(data => this.setState({allCards: data.all}, () => console.log(this.state.allCards)))
+            .then(this.getCategories)
     };
     deleteVocab = (id) => {
         if(window.confirm("Are you sure you want to delete?")){
@@ -43,6 +45,18 @@ class FlashCards extends React.Component{
             modalIsOpen: true
         });
     };
+    getCategories = () => {
+        let allCat = new Set();
+        let allCards = this.state.allCards;
+
+        for(let i = 0; i < allCards.length; i++){
+            for(let j = 0; j < allCards[i].categories.length; j++){
+                allCat.add(allCards[i].categories[j]);
+            }
+        }
+        this.setState({allCategories: allCat})
+    }
+
 
 // Flashcard controls
     navigateFlashCards = (e) => {
@@ -97,7 +111,7 @@ class FlashCards extends React.Component{
 
  
     render(){
-        console.log(this.state.allCards)
+        console.log("categories",this.state.allCategories)
 
         const displayEditForm = <EditVocabForm key={this.state.editVocab._id} 
                                                modalIsOpen={this.state.modalIsOpen}
